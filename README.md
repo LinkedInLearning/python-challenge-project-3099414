@@ -1,4 +1,4 @@
-# Python Challenge Projects
+# Python Challenge Project
 This is the repository for the LinkedIn Learning course Python Challenge Projects. The full course is available from [LinkedIn Learning][lil-course-url].
 
 _See the readme file in the main branch for updated instructions and information._
