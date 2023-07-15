@@ -2,13 +2,15 @@ import os
 import time
 from termcolor import colored
 
-# This is the Canvas class. It defines some height and width, and a 
+# This is the Canvas class. It defines some height and width, and a
 # matrix of characters to keep track of where the TerminalScribes are moving
+
+
 class Canvas:
     def __init__(self, width, height):
         self._x = width
         self._y = height
-        # This is a grid that contains data about where the 
+        # This is a grid that contains data about where the
         # TerminalScribes have visited
         self._canvas = [[' ' for y in range(self._y)] for x in range(self._x)]
 
@@ -29,6 +31,7 @@ class Canvas:
         self.clear()
         for y in range(self._y):
             print(' '.join([col[y] for col in self._canvas]))
+
 
 class TerminalScribe:
     def __init__(self, canvas):
@@ -70,24 +73,38 @@ class TerminalScribe:
         # Sleep for a little bit to create the animation
         time.sleep(self.framerate)
 
-# Create a new Canvas instance that is 30 units wide by 30 units tall 
+    def draw_right(self, size):
+        while size > 0:
+            size -= 1
+            scribe.right()
+
+    def draw_left(self, size):
+        while size > 0:
+            size -= 1
+            scribe.left()
+
+    def draw_down(self, size):
+        while size > 0:
+            size -= 1
+            scribe.down()
+
+    def draw_up(self, size):
+        while size > 0:
+            size -= 1
+            scribe.up()
+
+    def draw_square(self, size):
+        self.draw_right(size)
+        self.draw_down(size)
+        self.draw_left(size)
+        self.draw_up(size)
+
+
+# Create a new Canvas instance that is 30 units wide by 30 units tall
 canvas = Canvas(30, 30)
 
 # Create a new scribe and give it the Canvas object
 scribe = TerminalScribe(canvas)
 
 # Draw a small square
-scribe.right()
-scribe.right()
-scribe.right()
-scribe.down()
-scribe.down()
-scribe.down()
-scribe.left()
-scribe.left()
-scribe.left()
-scribe.up()
-scribe.up()
-scribe.up()
-
-
+scribe.draw_square(20)
